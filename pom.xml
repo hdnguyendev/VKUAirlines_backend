@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.0</version>
+        <version>3.0.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>hdn.dev</groupId>
     <artifactId>android_api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>android_api</name>
     <description>android_api</description>
     <properties>
