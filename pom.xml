@@ -14,7 +14,7 @@
     <name>android_api</name>
     <description>android_api</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>
