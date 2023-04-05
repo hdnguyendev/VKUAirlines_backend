@@ -30,13 +30,13 @@ public class RestApiController {
         // Kiểm tra xem user có tồn tại trong cơ sở dữ liệu hay không
         Optional<User> optionalUser = userRepository.findByUsername(user.getUsername());
         if (!optionalUser.isPresent()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseObject("failure", "Tài khoản hoặc mật khẩu bị sai!", ""));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseObject("error", "Tài khoản hoặc mật khẩu bị sai!", null));
         }
 
         // Kiểm tra xem mật khẩu có đúng không
         User dbUser = optionalUser.get();
         if (!dbUser.getPassword().equals(user.getPassword())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseObject("failure", "Tài khoản hoặc mật khẩu bị sai!", ""));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseObject("error", "Tài khoản hoặc mật khẩu bị sai!", null));
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("success", "Đăng nhập thành công!", dbUser));
