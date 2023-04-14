@@ -1,29 +1,21 @@
 package hdn.dev.android_api.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import hdn.dev.android_api.model.ResponseObject;
 import hdn.dev.android_api.model.User;
 import hdn.dev.android_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/")
-public class RestApiController {
+public class LoginController {
     @Autowired
     private UserRepository userRepository;
-
-    @GetMapping("/users")
-    public List<User> getUserList() {
-        return userRepository.findAll();
-    }
 
     @PostMapping("/login")
     public ResponseEntity<ResponseObject> checkLogin(@RequestBody User user) throws JsonProcessingException {
