@@ -23,15 +23,14 @@ public class RegistrationController {
     public ResponseEntity<ResponseObject> register(@RequestBody User user) throws JsonProcessingException {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("error", "Username is already taken!", ""));
+        } else {
+            User newUser = new User();
+            newUser.setUsername(user.getUsername());
+            newUser.setPassword(user.getPassword());
+            newUser.setPhone(user.getPhone());
+            userRepository.save(newUser);
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("success", "Registration successful!", newUser));
         }
-        User newUser = new User();
-        newUser.setUsername(user.getUsername());
-        newUser.setPassword(user.getPassword());
-        newUser.setPhone(user.getPhone());
-
-        userRepository.save(newUser);
-
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("success", "Registration successful!", newUser));
     }
 
 
