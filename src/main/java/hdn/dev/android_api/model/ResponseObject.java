@@ -1,5 +1,8 @@
 package hdn.dev.android_api.model;
-public class ResponseObject {
+
+import org.springframework.http.HttpStatusCode;
+
+public class ResponseObject{
     private String status;
     private String message;
     private Object data;

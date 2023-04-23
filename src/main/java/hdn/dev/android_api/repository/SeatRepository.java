@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Long> {
+
     List<Seat> findAll();
     List<Seat> findByFlight_FlightCode(String flightCode);
 }
