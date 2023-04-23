@@ -16,7 +16,14 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
-
+    @GetMapping("user/{id}")
+    public ResponseEntity<ResponseObject> getUser(@PathVariable Long id) {
+        User user = userRepository.findUserById(id);
+        if (user != null) {
+            return  ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("success", "Success", user));
+        }
+        return null;
+    }
     @PutMapping("user/{id}")
     public ResponseEntity<ResponseObject> updateUser(@PathVariable Long id, @RequestBody User user) {
         User updateUser = userRepository.findUserById(id);
