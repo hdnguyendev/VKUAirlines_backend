@@ -1,6 +1,8 @@
 package hdn.dev.android_api.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,13 +16,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "ticket")
-@Data
 @NoArgsConstructor
+@Data
 @AllArgsConstructor
 public class Ticket implements Serializable {
     private static final long serialVersionUID = -297553281792804396L;
@@ -28,17 +31,23 @@ public class Ticket implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ticket_id", nullable = false)
     private Long ticketId;
+
+    @Column(name = "total_amount", nullable = false)
+    private double totalAmount;
+    @Column(name = "time_booking", nullable = false)
+    private LocalDateTime time_booking;
+    @Column(name ="list_seat", nullable = false)
+    private String list_seat;
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "flight_id")
-    private Flight flight;
-    @JsonIgnore
-    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Seat> seats = new ArrayList<>();
+    @Column(name = "momo", nullable = true)
+    private String momo;
+
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    @Column(name = "flight_code")
+    private String flightCode;
+
 
 
 }

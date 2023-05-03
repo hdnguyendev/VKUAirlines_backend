@@ -21,20 +21,10 @@ public class SeatController {
 
     @GetMapping("/seats/{flight_code}")
     private ResponseEntity<ResponseObject> getSeatByFlight(@PathVariable("flight_code") String flight_code) {
-        List<Seat> seat =  seatRepository.findByFlight_FlightCode(flight_code);
+        List<Seat> seat =  seatRepository.findByFlightCode(flight_code);
         if (seat == null) {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("error", "Seat not found",null));
         }
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("success", "Successfully", seat));
     }
-
-    @GetMapping("/seats")
-    private ResponseEntity<ResponseObject> getAllSeats() {
-        List<Seat> seat = seatRepository.findAll();
-        if (seat == null) {
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("error", "Seat not found", null));
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("success", "Successfully", seat));
-    }
-
 }

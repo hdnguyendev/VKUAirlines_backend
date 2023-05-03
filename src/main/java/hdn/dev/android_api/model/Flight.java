@@ -1,6 +1,8 @@
 package hdn.dev.android_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,15 +20,17 @@ import java.util.List;
 public class Flight {
     @Id
     private String flightCode;
-    private String flight_name;
+
+    private String flightName;
     private String departure;
+    private String departureSort;
+
     private String destination;
+    private String destinationSort;
+
     private LocalDateTime departureTime;
+
     private LocalDateTime arrivalTime;
-    @JsonIgnore
-    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Ticket> tickets = new ArrayList<>();
-    @JsonIgnore
-    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Seat> seats = new ArrayList<>();
+
+    private int remaining_seat = 40;
 }

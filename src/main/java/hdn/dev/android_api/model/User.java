@@ -1,10 +1,14 @@
 package hdn.dev.android_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
+import org.springframework.aot.generate.GeneratedTypeReference;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,18 +24,28 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "username")
+    private Long userId;
+
     private String username;
-    @Column(name = "password")
+
     private String password;
+
     private String phone;
+
     private String email;
+
     private String address;
+
     private int year;
+
     private String fullname;
+
     private String avatar;
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Ticket> tickets = new ArrayList<>();
+
+    @Column(name = "nationality")
+    private String nationality;
+
+    @Column(name = "gender")
+    private boolean gender;
+
 }
